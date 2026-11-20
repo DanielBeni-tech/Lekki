@@ -124,41 +124,48 @@ export function HomeOverview({
   const isReader = Boolean(activeWorkspace) && !canManage;
 
   return (
-    <div id="home-overview-container" className="flex-1 overflow-y-auto bg-[#1B212A] p-4 sm:p-8 space-y-6 sm:space-y-8">
+    <div id="home-overview-container" className="flex-1 overflow-y-auto bg-[#F8F7F4] p-4 sm:p-8 space-y-6 sm:space-y-8">
       {/* Accueil : poser une question tout de suite */}
-      <section className="relative overflow-hidden rounded-2xl border border-zinc-800/80 bg-gradient-to-br from-[#212734] via-[#242B38] to-[#1F242F] p-4 shadow-xl sm:p-8">
-        <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl sm:h-80 sm:w-80" />
-        <div className="relative z-10 max-w-3xl space-y-4 sm:space-y-5">
-          <div className="space-y-1.5">
-            <p className="flex min-w-0 items-center gap-1.5 text-xs font-medium text-emerald-300/90">
+      <section className="relative overflow-hidden rounded-3xl border border-[#E7E4D9] bg-ink p-5 shadow-[0_32px_80px_-48px_rgba(0,0,0,0.95)] sm:p-9">
+        <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-amber-300/10 blur-3xl sm:h-80 sm:w-80" />
+        <div className="relative z-10 max-w-3xl space-y-5 sm:space-y-6">
+          <div className="space-y-3">
+            <p className="eyebrow flex min-w-0 items-center gap-2 text-emerald-300/80">
               <span className="shrink-0">{firstName ? `Bonjour ${firstName}` : "Bonjour"}</span>
-              <span className="truncate text-zinc-500">
-                · {activeWorkspace ? activeWorkspace.name : "Mon espace"}
+              <span className="h-1 w-1 shrink-0 rounded-full bg-emerald-300/50" />
+              <span className="truncate normal-case tracking-normal text-[11px] font-medium text-subtle">
+                {activeWorkspace ? activeWorkspace.name : "Mon espace"}
                 {library.academic && library.current ? ` · S${library.current}` : ""}
               </span>
             </p>
-            <h1 className="text-[1.65rem] font-extrabold leading-[1.15] tracking-tight text-zinc-100 sm:text-4xl">
+            <h1 className="display-title max-w-2xl text-[1.75rem] leading-[1.12] text-heading sm:text-[2.6rem]">
               {wording.headline[0]}{" "}
-              <span className="whitespace-nowrap text-emerald-400">{wording.headline[1].replace(" ?", "\u00a0?")}</span>
+              <em className="whitespace-nowrap not-italic text-emerald-300 sm:italic">
+                {wording.headline[1].replace(" ?", "\u00a0?")}
+              </em>
             </h1>
           </div>
 
-          <form onSubmit={submit} className="relative">
-            <Sparkles className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-emerald-400" />
+          <form
+            onSubmit={submit}
+            className="flex items-center gap-2.5 rounded-2xl border border-[#E7E4D9] bg-[#FBFAF6]/75 p-2 pl-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-sm transition focus-within:border-emerald-400/40"
+          >
+            <Sparkles className="h-4 w-4 shrink-0 text-amber-700" />
             <input
               value={question}
               onChange={(event) => setQuestion(event.target.value)}
               placeholder={narrow ? "Pose ta question à Lekki…" : wording.askPlaceholder}
               aria-label="Question pour Lekki"
               enterKeyHint="send"
-              className="h-12 w-full truncate rounded-xl border border-zinc-700/70 bg-[#1A2029]/90 pl-11 pr-14 text-sm text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-emerald-400/60 focus:ring-2 focus:ring-emerald-400/10 max-sm:placeholder:text-[13px]"
+              className="min-w-0 flex-1 truncate bg-transparent py-2.5 text-sm text-heading outline-none placeholder:text-subtle max-sm:placeholder:text-[13px]"
             />
             <button
               type="submit"
               disabled={!question.trim()}
               aria-label="Demander à Lekki"
-              className="absolute right-1.5 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg bg-emerald-400 text-zinc-950 transition hover:bg-emerald-300 disabled:opacity-30"
+              className="flex h-10 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-emerald-400 px-3 text-sm font-semibold text-[#FBFAF6] transition hover:bg-emerald-300 disabled:opacity-30 sm:px-4"
             >
+              <span className="hidden sm:inline">Demander</span>
               <ArrowUp className="h-4 w-4" />
             </button>
           </form>
@@ -169,7 +176,7 @@ export function HomeOverview({
               <button
                 key={suggestion}
                 onClick={() => onAsk(suggestion)}
-                className="min-h-9 max-w-[16rem] shrink-0 snap-start truncate rounded-full border border-zinc-700/60 bg-zinc-900/60 px-3 py-1.5 text-xs text-zinc-300 transition hover:border-emerald-400/40 hover:text-emerald-200 sm:max-w-full sm:text-[11px]"
+                className="min-h-9 max-w-[16rem] shrink-0 snap-start truncate rounded-full border border-[#E7E4D9] bg-[#F8F7F2] px-3 py-1.5 text-xs text-body transition hover:border-emerald-400/40 hover:bg-emerald-400/[0.07] hover:text-emerald-100 sm:max-w-full sm:text-[11px]"
               >
                 {suggestion}
               </button>
@@ -201,8 +208,8 @@ export function HomeOverview({
                     aria-label={label}
                     className={`flex min-h-[4.25rem] flex-col items-center justify-center gap-1.5 rounded-xl px-1.5 py-2 text-center text-[11px] font-medium leading-tight transition sm:min-h-0 sm:flex-row sm:gap-2 sm:rounded-lg sm:px-3.5 sm:py-2 sm:text-xs ${
                       primary
-                        ? "bg-emerald-400 font-semibold text-zinc-950 hover:bg-emerald-300"
-                        : "border border-zinc-700/70 bg-zinc-900/50 text-zinc-200 hover:bg-zinc-800"
+                        ? "bg-emerald-400 font-semibold text-[#FBFAF6] hover:bg-emerald-300"
+                        : "border border-[#E7E4D9] bg-[#F8F7F2] text-strong hover:bg-[#F8F7F2]"
                     }`}
                   >
                     <Icon className="h-[18px] w-[18px] shrink-0 sm:h-3.5 sm:w-3.5" />
@@ -253,16 +260,16 @@ export function HomeOverview({
           className="flex w-full items-center justify-between gap-3 rounded-xl border border-emerald-400/20 bg-emerald-400/[0.05] p-4 text-left transition hover:bg-emerald-400/[0.08]"
         >
           <span>
-            <span className="block text-sm font-medium text-zinc-100">Range cet espace par matière</span>
-            <span className="mt-0.5 block text-xs text-zinc-400">Indique le niveau de la promo (ITT1, ITT2, ITT3) : Lekki classe les cours et les sujets tout seul.</span>
+            <span className="block text-sm font-medium text-heading">Range cet espace par matière</span>
+            <span className="mt-0.5 block text-xs text-muted">Indique le niveau de la promo (ITT1, ITT2, ITT3) : Lekki classe les cours et les sujets tout seul.</span>
           </span>
           <ArrowRight className="h-4 w-4 shrink-0 text-emerald-400" />
         </button>
       )}
 
       {isEmpty ? (
-        <section className="rounded-2xl border border-dashed border-zinc-800 p-5 sm:p-8">
-          <h2 className="text-sm font-semibold text-zinc-100">{wording.startTitle}</h2>
+        <section className="rounded-2xl border border-dashed border-line p-5 sm:p-8">
+          <h2 className="text-sm font-semibold text-heading">{wording.startTitle}</h2>
           <ol className="mt-4 grid gap-3 sm:grid-cols-3">
             {[
               { icon: Upload, title: "Importe un dossier", text: wording.importText, action: () => onNavigate(activeWorkspace ? "workspace_files" : "my_docs"), cta: "Ouvrir les documents" },
@@ -273,13 +280,13 @@ export function HomeOverview({
                 ? { icon: GraduationCap, title: "Révise", text: "Questions sourcées, quiz par chapitre, corrections d’anciens sujets.", action: () => onOpenRevision("quiz"), cta: "Essayer" }
                 : { icon: Sparkles, title: "Retrouve tout", text: "Pose ta question : Lekki AI répond en citant le document d’où vient l’information.", action: () => onOpenAI(), cta: "Poser une question" },
             ].map(({ icon: Icon, title, text, action, cta }, index) => (
-              <li key={title} className="rounded-xl bg-[#1F242F] p-4 ring-1 ring-inset ring-zinc-800">
+              <li key={title} className="rounded-xl bg-[#FFFFFF] p-4 ring-1 ring-inset ring-line">
                 <div className="flex items-center gap-2 text-emerald-300">
                   <span className="flex h-6 w-6 items-center justify-center rounded-md bg-emerald-400/10 text-[11px] font-bold">{index + 1}</span>
                   <Icon className="h-4 w-4" />
                 </div>
-                <p className="mt-3 text-sm font-medium text-zinc-100">{title}</p>
-                <p className="mt-1 text-xs leading-relaxed text-zinc-400">{text}</p>
+                <p className="mt-3 text-sm font-medium text-heading">{title}</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted">{text}</p>
                 <button onClick={action} className="mt-3 inline-flex items-center gap-1 text-xs text-emerald-400 hover:underline">
                   {cta} <ArrowRight className="h-3 w-3" />
                 </button>
@@ -293,12 +300,12 @@ export function HomeOverview({
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <StatCard icon={LibraryIcon} tone="text-emerald-400" value={courses.length} title={wording.study ? "Cours & TD" : "Documents"} hint={wording.study ? "Documents de cours" : "Dans cet espace"} onClick={() => onNavigate(activeWorkspace ? "workspace_files" : "my_docs")} />
             {wording.study && (
-              <StatCard icon={FileCheck2} tone="text-rose-300" value={exams.length} title="Anciens sujets" hint="Examens, RAT, CC" onClick={() => onOpenRevision("correction")} />
+              <StatCard icon={FileCheck2} tone="text-rose-700" value={exams.length} title="Anciens sujets" hint="Examens, RAT, CC" onClick={() => onOpenRevision("correction")} />
             )}
-            <StatCard icon={BookOpen} tone="text-sky-400" value={wikiPages.length} title="Fiches du wiki" hint={`${verifiedCount} vérifiée${verifiedCount > 1 ? "s" : ""}`} onClick={() => onNavigate(activeWorkspace ? "workspace_wiki" : "my_docs")} />
+            <StatCard icon={BookOpen} tone="text-sky-700" value={wikiPages.length} title="Fiches du wiki" hint={`${verifiedCount} vérifiée${verifiedCount > 1 ? "s" : ""}`} onClick={() => onNavigate(activeWorkspace ? "workspace_wiki" : "my_docs")} />
             <StatCard
               icon={Users}
-              tone="text-violet-300"
+              tone="text-violet-700"
               value={activeWorkspace?.members_count ?? 1}
               title="Membres"
               hint={!activeWorkspace ? "Espace personnel" : isReader ? "Dans cet espace" : "Inviter avec un code"}
@@ -314,13 +321,13 @@ export function HomeOverview({
               {exams.length ? (
                 <ul className="space-y-2">
                   {exams.slice(0, 6).map(({ file, info }) => (
-                    <li key={file.id} className="flex items-center gap-3 rounded-xl border border-zinc-800 bg-[#1F242F] p-3 transition hover:border-zinc-700">
+                    <li key={file.id} className="flex items-center gap-3 rounded-xl border border-line bg-[#FFFFFF] p-3 transition hover:border-line-strong">
                       <button onClick={() => onOpenFile(file)} className="flex min-w-0 flex-1 items-center gap-2.5 text-left">
-                        <span className="rounded bg-zinc-800 p-1.5 ring-1 ring-zinc-700/60">
+                        <span className="rounded bg-[#F1F0E9] p-1.5 ring-1 ring-line-strong/60">
                           <DocumentTypeIcon extension={file.extension} className="h-5 w-4" />
                         </span>
                         <span className="min-w-0">
-                          <span className="block truncate text-xs font-medium text-zinc-200">{prettyName(file.name)}</span>
+                          <span className="block truncate text-xs font-medium text-strong">{prettyName(file.name)}</span>
                           <span className="mt-1 block"><StudentDocBadge info={info} /></span>
                         </span>
                       </button>
@@ -345,20 +352,20 @@ export function HomeOverview({
               {courses.length ? (
                 <ul className="space-y-2">
                   {courses.slice(0, 6).map(({ file, info }) => (
-                    <li key={file.id} className="flex items-center gap-3 rounded-xl border border-zinc-800 bg-[#1F242F] p-3 transition hover:border-zinc-700">
+                    <li key={file.id} className="flex items-center gap-3 rounded-xl border border-line bg-[#FFFFFF] p-3 transition hover:border-line-strong">
                       <button onClick={() => onOpenFile(file)} className="flex min-w-0 flex-1 items-center gap-2.5 text-left">
-                        <span className="rounded bg-zinc-800 p-1.5 ring-1 ring-zinc-700/60">
+                        <span className="rounded bg-[#F1F0E9] p-1.5 ring-1 ring-line-strong/60">
                           <DocumentTypeIcon extension={file.extension} className="h-5 w-4" />
                         </span>
                         <span className="min-w-0">
-                          <span className="block truncate text-xs font-medium text-zinc-200">{prettyName(file.name)}</span>
+                          <span className="block truncate text-xs font-medium text-strong">{prettyName(file.name)}</span>
                           <span className="mt-1 block"><StudentDocBadge info={info} compact /></span>
                         </span>
                       </button>
                       {wording.study && (
                         <button
                           onClick={() => onOpenRevision("quiz", file.id)}
-                          className="shrink-0 rounded-lg border border-zinc-700/70 px-2.5 py-1.5 text-[11px] font-medium text-zinc-300 transition hover:bg-zinc-800"
+                          className="shrink-0 rounded-lg border border-line-strong/70 px-2.5 py-1.5 text-[11px] font-medium text-body transition hover:bg-[#EFEEE7]"
                         >
                           Quiz
                         </button>
@@ -380,17 +387,17 @@ export function HomeOverview({
                   <li key={page.id}>
                     <button
                       onClick={() => onOpenWiki(page)}
-                      className="w-full rounded-xl border border-zinc-800 bg-[#1F242F] p-3 text-left transition hover:border-zinc-700"
+                      className="w-full rounded-xl border border-line bg-[#FFFFFF] p-3 text-left transition hover:border-line-strong"
                     >
                       <span className="flex items-center gap-2">
-                        <span className="truncate text-xs font-medium text-zinc-200">{page.title}</span>
+                        <span className="truncate text-xs font-medium text-strong">{page.title}</span>
                         {page.status === "verified" ? (
                           <CheckCircle2 className="h-3 w-3 shrink-0 text-emerald-400" aria-label="Vérifiée" />
                         ) : (
-                          <Clock className="h-3 w-3 shrink-0 text-amber-400" aria-label="Non vérifiée" />
+                          <Clock className="h-3 w-3 shrink-0 text-amber-700" aria-label="Non vérifiée" />
                         )}
                       </span>
-                      <span className="mt-1 block line-clamp-1 text-[11px] text-zinc-500">
+                      <span className="mt-1 block line-clamp-1 text-[11px] text-subtle">
                         {page.section && page.section !== "Général" ? `${page.section} · ` : ""}
                         {page.content.replace(/[#*`_>]/g, "").replace(page.title, "").trim().slice(0, 110)}
                       </span>
@@ -413,14 +420,14 @@ function StatCard({
   return (
     <Tag
       onClick={onClick}
-      className={`rounded-xl border border-zinc-800 bg-[#1F242F] p-4 text-left ${onClick ? "transition hover:border-zinc-700 hover:bg-zinc-900/80" : ""}`}
+      className={`rounded-2xl border border-[#E7E4D9] bg-[#FFFFFF] p-4 text-left ${onClick ? "transition hover:border-emerald-400/25 hover:bg-[#FFFFFF]" : ""}`}
     >
       <div className="mb-2 flex items-center justify-between">
         <Icon className={`h-5 w-5 ${tone}`} />
-        <span className="font-mono text-sm font-semibold text-zinc-200">{value}</span>
+        <span className="font-display text-lg leading-none text-heading">{value}</span>
       </div>
-      <div className="text-xs font-semibold text-zinc-200">{title}</div>
-      <p className="mt-0.5 line-clamp-1 text-[11px] text-zinc-500">{hint}</p>
+      <div className="text-xs font-semibold text-strong">{title}</div>
+      <p className="mt-0.5 line-clamp-1 text-[11px] text-subtle">{hint}</p>
     </Tag>
   );
 }
@@ -430,7 +437,7 @@ function SectionTitle({
 }: { icon: React.ElementType; title: string; action?: { label: string; onClick: () => void } }) {
   return (
     <div className="flex items-center justify-between">
-      <h2 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-300">
+      <h2 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-body">
         <Icon className="h-4 w-4 text-emerald-400" /> {title}
       </h2>
       {action && (
@@ -443,5 +450,5 @@ function SectionTitle({
 }
 
 function EmptyCard({ text }: { text: string }) {
-  return <div className="rounded-xl border border-dashed border-zinc-800 p-5 text-center text-xs leading-relaxed text-zinc-500">{text}</div>;
+  return <div className="rounded-xl border border-dashed border-line p-5 text-center text-xs leading-relaxed text-subtle">{text}</div>;
 }
