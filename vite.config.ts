@@ -87,6 +87,7 @@ export default defineConfig({
     emptyOutDir: true,
   },
   server: {
+    allowedHosts: ["sb-1pggjacolxga.vercel.run"],
     port: 3000,
     host: "0.0.0.0",
     hmr: false,

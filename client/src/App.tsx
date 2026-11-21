@@ -5,7 +5,7 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { WorkspaceProvider, useWorkspace } from "./contexts/WorkspaceContext";
 import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
-import { HomeOverview } from "./components/HomeOverview";
+import { NotebookHome } from "./components/NotebookHome";
 import { DriveView } from "./components/DriveView";
 import { WikiView } from "./components/WikiView";
 import { WikiPageReader } from "./components/WikiPageReader";
@@ -408,18 +408,18 @@ function LekkiMain() {
         {/* Dynamic Center Stage View */}
         <main className="flex-1 flex flex-col min-w-0 bg-[#F8F7F4] overflow-hidden">
           {currentView === "home" && (
-            <HomeOverview
+            <NotebookHome
               files={files}
               wikiPages={wikiPages}
               activeWorkspace={activeWorkspace}
-              onNavigate={(v) => {
-                setCurrentView(v);
+              onNavigate={(view) => {
+                setCurrentView(view);
                 setActiveWikiPage(null);
                 setWikiFilterTopic(null);
               }}
               onOpenFile={(file) => setViewingFile(file)}
-              onOpenWiki={(p) => {
-                setActiveWikiPage(p);
+              onOpenWiki={(page) => {
+                setActiveWikiPage(page);
                 setCurrentView("workspace_wiki");
                 setWikiFilterTopic(null);
               }}
@@ -429,7 +429,6 @@ function LekkiMain() {
               onOpenRevision={openRevision}
               onScan={() => setScan({ open: true, subjectId: null, folderId: null })}
               library={library}
-              onOpenSubject={openSubject}
             />
           )}
 
