@@ -1,16 +1,15 @@
 /**
  * Mode démo : fait tourner tout le frontend sans backend.
  *
- * Activé par défaut en développement (`npm run dev`). Pour retrouver le vrai backend,
- * lancer `VITE_DEMO=false npm run dev`. En production, la démo est toujours désactivée.
+ * Activé par défaut dans toutes les builds afin que cette branche soit consultable
+ * sans serveur ni compte. Les réponses proviennent uniquement des données ci-dessous.
  *
  * Toutes les requêtes interceptées dans `lib/api.ts` répondent à partir des données
  * ci-dessous : deux espaces, des cours/TD/sujets, des fiches wiki, l'IA, la révision.
  * N'importe quel identifiant et mot de passe ouvre la démo.
  */
 
-export const DEMO_ENABLED =
-  import.meta.env.DEV && (import.meta.env.VITE_DEMO as string | undefined) !== "false";
+export const DEMO_ENABLED = true;
 
 import type { DriveFolder, WikiStatus, Workspace } from "@/types/lekki";
 
