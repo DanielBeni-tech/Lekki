@@ -120,7 +120,7 @@ function TypingText({
     <span className="whitespace-pre-wrap break-words">
       {displayedText}
       {index < text.length && (
-        <span className="ml-0.5 inline-block h-3.5 w-[2px] translate-y-[2px] animate-pulse bg-amber-400" />
+        <span className="ml-0.5 inline-block h-3.5 w-[2px] translate-y-[2px] animate-pulse bg-[#1a73e8]" />
       )}
     </span>
   );
@@ -177,13 +177,13 @@ function SourceCard({
     : null;
 
   return (
-    <div className="group rounded-xl border border-[#E7E4D9] bg-[#FFFFFF] p-3 transition-colors hover:border-[#E7E4D9]">
+    <div className="group rounded-2xl border border-[#e8eaed] bg-white p-3 transition-colors hover:border-[#dadce0] hover:shadow-[0_1px_3px_rgba(60,64,67,0.08)]">
       <div className="flex items-start gap-3">
         <div
           className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
             isDocument
-              ? "bg-amber-400/10 text-amber-700"
-              : "bg-violet-400/10 text-violet-700"
+              ? "bg-[#e8f0fe] text-[#1a73e8]"
+              : "bg-[#e8f0fe] text-[#1a73e8]"
           }`}
         >
           {isDocument ? (
@@ -195,23 +195,23 @@ function SourceCard({
 
         <div className="min-w-0 flex-1">
           <div className="flex items-start justify-between gap-2">
-            <p className="break-words text-[13px] font-medium leading-5 text-strong">
+            <p className="break-words text-[13px] font-medium leading-5 text-[#1f1f1f]">
               {source.title}
             </p>
 
-            <span className="shrink-0 rounded-md bg-[#F8F7F2] px-1.5 py-1 text-[10px] text-subtle">
+            <span className="shrink-0 rounded-md bg-[#f1f3f4] px-1.5 py-1 text-[10px] text-[#5f6368]">
               {getSourceLocation(source)}
             </span>
           </div>
 
-          <p className="mt-1 text-[11px] text-subtle">
+          <p className="mt-1 text-[11px] text-[#5f6368]">
             {isDocument
               ? source.file_extension?.toUpperCase() || "Document"
               : "Page Wiki"}
           </p>
 
           {source.excerpt && (
-            <p className="mt-2 line-clamp-3 border-l-2 border-white/10 pl-2.5 text-xs leading-relaxed text-muted">
+            <p className="mt-2 line-clamp-3 border-l-2 border-[#1a73e8]/20 pl-2.5 text-xs leading-relaxed text-[#5f6368]">
               {source.excerpt}
             </p>
           )}
@@ -220,7 +220,7 @@ function SourceCard({
             {workspaceName ? (
               <span
                 title={`Source issue de ${workspaceName}`}
-                className="inline-flex max-w-full items-center gap-1.5 rounded-md bg-amber-400/10 px-2 py-1 text-[10px] text-amber-700"
+                className="inline-flex max-w-full items-center gap-1.5 rounded-md bg-[#e8f0fe] px-2 py-1 text-[10px] text-[#1a73e8]"
               >
                 <ExternalLink className="h-3 w-3 shrink-0" />
                 <span className="truncate">{workspaceName}</span>
@@ -235,7 +235,7 @@ function SourceCard({
                   ? onOpenDoc(source.id)
                   : onOpenWiki(source.id)
               }
-              className="inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-medium text-amber-700 transition-colors hover:bg-amber-400/10 hover:text-amber-700"
+              className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-medium text-[#1a73e8] transition-colors hover:bg-[#e8f0fe]"
             >
               {isDocument ? (
                 <>
@@ -439,11 +439,11 @@ export function LekkiAIPanel({
   return (
     <div
       id="lekki-ai-panel-overlay"
-      className="fixed inset-y-0 right-0 z-40 flex w-full flex-col overflow-hidden border-l border-[#E7E4D9] bg-white shadow-2xl animate-in slide-in-from-right duration-200 sm:w-[480px]"
+      className="fixed inset-y-0 right-0 z-40 flex w-full flex-col overflow-hidden border-l border-[#e8eaed] bg-white shadow-2xl animate-in slide-in-from-right duration-200 sm:w-[480px]"
     >
       {/* EN-TÊTE */}
 
-      <header className="flex h-[68px] shrink-0 items-center justify-between border-b border-[#E7E4D9] px-5">
+      <header className="flex h-[68px] shrink-0 items-center justify-between border-b border-[#e8eaed] px-5">
         <div className="flex items-center gap-3">
           <img
             src="/lekki-ai-logo.png"
@@ -452,10 +452,10 @@ export function LekkiAIPanel({
           />
 
           <div>
-            <h2 className="text-sm font-semibold tracking-tight text-heading">
+            <h2 className="text-sm font-medium tracking-tight text-[#1f1f1f]">
               Lekki AI
             </h2>
-            <p className="mt-0.5 text-[11px] text-subtle">
+            <p className="mt-0.5 text-[11px] text-[#5f6368]">
               Répond à partir de tes documents
             </p>
           </div>
@@ -467,7 +467,7 @@ export function LekkiAIPanel({
             disabled={loading || messages.length === 0}
             title="Effacer la conversation"
             aria-label="Effacer la conversation"
-            className="rounded-lg p-2.5 text-subtle transition-colors hover:bg-[#F8F7F2] hover:text-strong disabled:cursor-not-allowed disabled:opacity-30"
+            className="rounded-full p-2.5 text-[#5f6368] transition-colors hover:bg-[#f1f3f4] hover:text-[#1f1f1f] disabled:cursor-not-allowed disabled:opacity-30"
           >
             <RotateCcw className="h-4 w-4" />
           </button>
@@ -476,7 +476,7 @@ export function LekkiAIPanel({
             onClick={onClose}
             title="Fermer"
             aria-label="Fermer Lekki AI"
-            className="rounded-lg p-2.5 text-subtle transition-colors hover:bg-[#F8F7F2] hover:text-strong"
+            className="rounded-full p-2.5 text-[#5f6368] transition-colors hover:bg-[#f1f3f4] hover:text-[#1f1f1f]"
           >
             <X className="h-4 w-4" />
           </button>
@@ -486,27 +486,27 @@ export function LekkiAIPanel({
       {/* CONFIRMATION D'EFFACEMENT */}
 
       {showClearConfirmation && (
-        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/60 p-5 backdrop-blur-sm">
-          <div className="w-full max-w-sm rounded-2xl border border-white/10 bg-[#FFFFFF] p-5 shadow-2xl">
-            <h3 className="text-sm font-semibold text-heading">
+        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 p-5 backdrop-blur-sm">
+          <div className="w-full max-w-sm rounded-2xl border border-[#e8eaed] bg-white p-5 shadow-2xl">
+            <h3 className="text-sm font-medium text-[#1f1f1f]">
               Réinitialiser la conversation ?
             </h3>
 
-            <p className="mt-2 text-sm leading-relaxed text-muted">
+            <p className="mt-2 text-sm leading-relaxed text-[#5f6368]">
               L'historique de cette conversation sera effacé.
             </p>
 
             <div className="mt-5 flex justify-end gap-2">
               <button
                 onClick={() => setShowClearConfirmation(false)}
-                className="rounded-lg px-3 py-2 text-xs font-medium text-muted transition-colors hover:bg-[#F8F7F2] hover:text-strong"
+                className="rounded-full px-4 py-2 text-xs font-medium text-[#5f6368] transition-colors hover:bg-[#f1f3f4] hover:text-[#1f1f1f]"
               >
                 Annuler
               </button>
 
               <button
                 onClick={handleClearHistory}
-                className="rounded-lg bg-red-500/15 px-3 py-2 text-xs font-medium text-red-700 transition-colors hover:bg-red-500/25"
+                className="rounded-full bg-[#d93025]/10 px-4 py-2 text-xs font-medium text-[#d93025] transition-colors hover:bg-[#d93025]/20"
               >
                 Réinitialiser
               </button>
@@ -524,22 +524,22 @@ export function LekkiAIPanel({
           {safeMessages.length === 0 && !loading && (
             <div className="flex min-h-[min(60vh,520px)] flex-col justify-center py-4">
               <div className="mb-8">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-400/15 bg-amber-400/[0.08]">
-                  <Sparkles className="h-5 w-5 text-amber-700" />
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#1a73e8]/15 bg-[#e8f0fe]">
+                  <Sparkles className="h-5 w-5 text-[#1a73e8]" />
                 </div>
 
-                <h3 className="text-xl font-medium tracking-tight text-heading">
+                <h3 className="text-xl font-medium tracking-tight text-[#1f1f1f]">
                   Que veux-tu comprendre ?
                 </h3>
 
-                <p className="mt-2 max-w-sm text-sm leading-relaxed text-subtle">
+                <p className="mt-2 max-w-sm text-sm leading-relaxed text-[#5f6368]">
                   Pose ta question : Lekki AI répond à partir des cours, des sujets
                   et des fiches de ton espace, en citant ses sources.
                 </p>
               </div>
 
               <div className="space-y-2">
-                <p className="mb-3 text-[11px] font-medium uppercase tracking-wider text-faint">
+                <p className="mb-3 text-[11px] font-medium uppercase tracking-wider text-[#9aa0a6]">
                   Pour commencer
                 </p>
 
@@ -547,11 +547,11 @@ export function LekkiAIPanel({
                   <button
                     key={question}
                     onClick={() => void handleAsk(question)}
-                    className="group flex w-full items-center justify-between gap-3 rounded-xl border border-[#E7E4D9] bg-[#F8F7F2] px-4 py-3.5 text-left text-[13px] leading-relaxed text-muted transition-all hover:border-amber-400/20 hover:bg-amber-400/[0.035] hover:text-strong"
+                    className="group flex w-full items-center justify-between gap-3 rounded-2xl border border-[#e8eaed] bg-[#f8f9fa] px-4 py-3.5 text-left text-[13px] leading-relaxed text-[#3c4043] transition-all hover:border-[#1a73e8]/20 hover:bg-[#f8fbff] hover:text-[#1a73e8]"
                   >
                     <span>{question}</span>
 
-                    <span className="shrink-0 text-faint transition-transform group-hover:translate-x-0.5 group-hover:text-amber-700">
+                    <span className="shrink-0 text-[#9aa0a6] transition-transform group-hover:translate-x-0.5 group-hover:text-[#1a73e8]">
                       →
                     </span>
                   </button>
@@ -596,8 +596,8 @@ export function LekkiAIPanel({
                   }`}
                 >
                   {isUser ? (
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#F1F0E9]">
-                      <User className="h-3 w-3 text-muted" />
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#f1f3f4]">
+                      <User className="h-3 w-3 text-[#5f6368]" />
                     </div>
                   ) : (
                     <img
@@ -609,7 +609,7 @@ export function LekkiAIPanel({
 
                   <span
                     className={`text-xs font-medium ${
-                      isUser ? "text-muted" : "text-strong"
+                      isUser ? "text-[#5f6368]" : "text-[#1f1f1f]"
                     }`}
                   >
                     {isUser ? "Toi" : "Lekki AI"}
@@ -621,8 +621,8 @@ export function LekkiAIPanel({
                 <div
                   className={`max-w-[94%] text-[13px] leading-[1.85] sm:text-sm ${
                     isUser
-                      ? "rounded-2xl rounded-tr-sm bg-[#EEF2EB] px-4 py-3 text-heading"
-                      : "w-full pl-1 text-body"
+                      ? "rounded-2xl rounded-tr-sm bg-[#e8f0fe] px-4 py-3 text-[#1f1f1f]"
+                      : "w-full pl-1 text-[#3c4043]"
                   }`}
                 >
                   {isAnimated ? (
@@ -643,9 +643,9 @@ export function LekkiAIPanel({
                 {!isUser && !isAnimated && (
                   <div className="mt-4 w-full space-y-3">
                     {message.provider && (
-                      <div className="text-[10px] text-faint">
+                      <div className="text-[10px] text-[#9aa0a6]">
                         {message.provider.startsWith("Mode dégradé") ? (
-                          <span className="text-amber-700/80">
+                          <span className="text-[#d93025]/80">
                             Réponse en mode dégradé
                           </span>
                         ) : (
@@ -658,18 +658,18 @@ export function LekkiAIPanel({
                       <section className="pt-1">
                         <div className="mb-3 flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <BookOpen className="h-3.5 w-3.5 text-amber-700" />
+                            <BookOpen className="h-3.5 w-3.5 text-[#1a73e8]" />
 
-                            <h4 className="text-xs font-medium text-body">
+                            <h4 className="text-xs font-medium text-[#3c4043]">
                               Sources utilisées
                             </h4>
 
-                            <span className="rounded-md bg-[#F8F7F2] px-1.5 py-0.5 text-[10px] text-subtle">
+                            <span className="rounded-md bg-[#f1f3f4] px-1.5 py-0.5 text-[10px] text-[#5f6368]">
                               {uniqueSources.length}
                             </span>
                           </div>
 
-                          <span className="flex items-center gap-1 text-[10px] text-faint">
+                          <span className="flex items-center gap-1 text-[10px] text-[#9aa0a6]">
                             <Check className="h-3 w-3" />
                             Références
                           </span>
@@ -680,7 +680,7 @@ export function LekkiAIPanel({
                             source.workspace_id &&
                             source.workspace_id !== activeWorkspaceId
                         ) && (
-                          <p className="mb-3 flex items-center gap-2 rounded-lg bg-amber-400/[0.06] px-3 py-2 text-[11px] leading-relaxed text-amber-700/80">
+                          <p className="mb-3 flex items-center gap-2 rounded-lg bg-[#e8f0fe] px-3 py-2 text-[11px] leading-relaxed text-[#1a73e8]/80">
                             <ExternalLink className="h-3.5 w-3.5 shrink-0" />
                             Certaines sources proviennent d'autres espaces
                             de travail.
@@ -717,13 +717,13 @@ export function LekkiAIPanel({
                 className="h-6 w-6 object-contain"
               />
 
-              <div className="flex items-center gap-2 text-xs text-subtle">
+              <div className="flex items-center gap-2 text-xs text-[#5f6368]">
                 <span>Lekki AI lit tes documents</span>
 
                 <span className="flex gap-1">
-                  <span className="h-1 w-1 animate-bounce rounded-full bg-amber-400 [animation-delay:-0.3s]" />
-                  <span className="h-1 w-1 animate-bounce rounded-full bg-amber-400 [animation-delay:-0.15s]" />
-                  <span className="h-1 w-1 animate-bounce rounded-full bg-amber-400" />
+                  <span className="h-1 w-1 animate-bounce rounded-full bg-[#1a73e8] [animation-delay:-0.3s]" />
+                  <span className="h-1 w-1 animate-bounce rounded-full bg-[#1a73e8] [animation-delay:-0.15s]" />
+                  <span className="h-1 w-1 animate-bounce rounded-full bg-[#1a73e8]" />
                 </span>
               </div>
             </div>
@@ -735,7 +735,7 @@ export function LekkiAIPanel({
 
       {/* SAISIE */}
 
-      <footer className="shrink-0 border-t border-[#E7E4D9] bg-white px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-3 sm:px-5 sm:pb-4">
+      <footer className="shrink-0 border-t border-[#e8eaed] bg-white px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-3 sm:px-5 sm:pb-4">
         <form
           onSubmit={(event) => {
             event.preventDefault();
@@ -743,7 +743,7 @@ export function LekkiAIPanel({
           }}
           className="mx-auto max-w-2xl"
         >
-          <div className="group flex items-center gap-2 rounded-2xl border border-[#E7E4D9] bg-[#FFFFFF] p-1.5 transition-colors focus-within:border-amber-400/30 focus-within:bg-[#FFFFFF]">
+          <div className="group flex items-center gap-2 rounded-2xl border border-[#e8eaed] bg-white p-1.5 transition-colors focus-within:border-[#1a73e8]/30 focus-within:bg-white">
             <input
               ref={inputRef}
               type="text"
@@ -757,20 +757,20 @@ export function LekkiAIPanel({
               }}
               placeholder="Pose une question sur tes cours…"
               disabled={loading}
-              className="h-10 min-w-0 flex-1 bg-transparent px-3 text-[13px] text-heading outline-none placeholder:text-faint disabled:opacity-50"
+              className="h-10 min-w-0 flex-1 bg-transparent px-3 text-[13px] text-[#1f1f1f] outline-none placeholder:text-[#9aa0a6] disabled:opacity-50"
             />
 
             <button
               type="submit"
               disabled={!input.trim() || loading}
               aria-label="Envoyer le message"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-400 text-[#16241D] transition-all hover:bg-amber-300 disabled:cursor-not-allowed disabled:bg-[#F8F7F2] disabled:text-faint"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#1a73e8] text-white transition-all hover:bg-[#1967d2] disabled:cursor-not-allowed disabled:bg-[#f1f3f4] disabled:text-[#9aa0a6]"
             >
               <Send className="h-4 w-4" />
             </button>
           </div>
 
-          <p className="mt-2 text-center text-[10px] text-faint">
+          <p className="mt-2 text-center text-[10px] text-[#9aa0a6]">
             Les réponses s'appuient sur les documents de ton espace.
           </p>
         </form>

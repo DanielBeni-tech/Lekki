@@ -71,16 +71,16 @@ export function Sidebar({
     }
   };
 
-  // Entrée de navigation : l'état actif se lit à la teinte sauge et au fond très légèrement teinté.
+  // Entrée de navigation : l'état actif se lit au fond bleu très léger et au texte bleu.
   const navItemClass = (isActive: boolean) =>
-    `w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-sm font-medium transition-all group select-none ${
+    `w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-full text-sm font-medium transition-all group select-none ${
       isActive
-        ? "bg-emerald-400/[0.10] text-emerald-100 ring-1 ring-inset ring-emerald-400/20"
-        : "text-muted hover:text-heading hover:bg-[#F8F7F2] border border-transparent"
+        ? "bg-[#e8f0fe] text-[#1a73e8]"
+        : "text-[#3c4043] hover:text-[#1f1f1f] hover:bg-[#f1f3f4]"
     }`;
 
   const navIconClass = (isActive: boolean) =>
-    isActive ? "text-emerald-300" : "text-subtle group-hover:text-body";
+    isActive ? "text-[#1a73e8]" : "text-[#5f6368] group-hover:text-[#1f1f1f]";
 
   // Échap ferme le menu du téléphone (clavier Bluetooth, tablette).
   useEffect(() => {
@@ -108,14 +108,14 @@ export function Sidebar({
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={() => setWsSwitcherOpen(false)}
     >
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
 
       <div
-        className="relative w-full max-w-sm rounded-2xl bg-[#FFFFFF] border border-[#E7E4D9] shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150"
+        className="relative w-full max-w-sm rounded-2xl bg-white border border-[#e8eaed] shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between px-5 py-4 border-b border-[#E7E4D9]">
-          <span className="eyebrow text-subtle">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[#e8eaed]">
+          <span className="eyebrow text-[#5f6368]">
             Changer d’espace
           </span>
           <div className="flex items-center gap-1">
@@ -124,7 +124,7 @@ export function Sidebar({
                 setWsSwitcherOpen(false);
                 setCreateWorkspaceOpen(true);
               }}
-              className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs font-medium text-emerald-300 hover:bg-emerald-400/10 transition-colors"
+              className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-medium text-[#1a73e8] hover:bg-[#e8f0fe] transition-colors"
               aria-label="Créer un espace"
             >
               <Plus className="h-4 w-4" />
@@ -132,7 +132,7 @@ export function Sidebar({
             </button>
             <button
               onClick={() => setWsSwitcherOpen(false)}
-              className="p-1.5 rounded-lg text-subtle hover:text-strong hover:bg-[#F8F7F2] transition-colors"
+              className="p-1.5 rounded-full text-[#5f6368] hover:text-[#1f1f1f] hover:bg-[#f1f3f4] transition-colors"
               aria-label="Fermer"
             >
               <X className="h-4 w-4" />
@@ -142,26 +142,26 @@ export function Sidebar({
 
         <div className="py-2 max-h-72 overflow-y-auto">
           {loading && (
-            <p className="px-5 py-6 text-center text-sm text-subtle">Chargement des espaces...</p>
+            <p className="px-5 py-6 text-center text-sm text-[#5f6368]">Chargement des espaces...</p>
           )}
           {!loading && error && (
             <div className="px-5 py-6 text-center space-y-2">
-              <p className="text-sm text-amber-700">{error}</p>
-              <button onClick={() => void refresh()} className="text-xs text-emerald-300 hover:text-emerald-200">
+              <p className="text-sm text-[#d93025]">{error}</p>
+              <button onClick={() => void refresh()} className="text-xs text-[#1a73e8] hover:underline">
                 Réessayer
               </button>
             </div>
           )}
           {!loading && !error && workspaces.length === 0 && (
             <div className="px-5 py-7 text-center">
-              <p className="text-sm font-medium text-strong">Aucun espace disponible</p>
-              <p className="mt-1 text-xs text-subtle">Rejoins un espace avec son code ou crée-en un.</p>
+              <p className="text-sm font-medium text-[#1f1f1f]">Aucun espace disponible</p>
+              <p className="mt-1 text-xs text-[#5f6368]">Rejoins un espace avec son code ou crée-en un.</p>
               <button
                 onClick={() => {
                   setWsSwitcherOpen(false);
                   setCreateWorkspaceOpen(true);
                 }}
-                className="mt-4 inline-flex items-center gap-2 rounded-xl bg-emerald-400 px-3 py-2 text-xs font-semibold text-[#FBFAF6] hover:bg-emerald-300 transition-colors"
+                className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1a73e8] px-4 py-2 text-xs font-medium text-white hover:bg-[#1967d2] transition-colors"
               >
                 <Plus className="h-4 w-4" />
                 Rejoindre ou créer
@@ -176,24 +176,24 @@ export function Sidebar({
                 onClick={() => handleSwitchWs(ws.id)}
                 className={`w-full px-4 py-3 text-left flex items-center gap-3 transition-colors ${
                   isActive
-                    ? "bg-emerald-400/10 text-emerald-200"
-                    : "text-body hover:bg-[#F8F7F2] hover:text-heading"
+                    ? "bg-[#e8f0fe] text-[#1a73e8]"
+                    : "text-[#3c4043] hover:bg-[#f1f3f4] hover:text-[#1f1f1f]"
                 }`}
               >
                 <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
                   isActive
-                    ? "bg-emerald-400/15 text-emerald-300"
-                    : "bg-[#F8F7F2] text-muted"
+                    ? "bg-[#1a73e8]/10 text-[#1a73e8]"
+                    : "bg-[#f1f3f4] text-[#5f6368]"
                 }`}>
                   {getWorkspaceIcon(ws.icon)}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-sm truncate">{ws.name}</div>
+                  <div className="font-medium text-sm truncate">{ws.name}</div>
                   {ws.description && (
-                    <div className="text-[11px] text-subtle truncate">{ws.description}</div>
+                    <div className="text-[11px] text-[#5f6368] truncate">{ws.description}</div>
                   )}
                 </div>
-                {isActive && <Check className="h-4 w-4 text-emerald-300 shrink-0" />}
+                {isActive && <Check className="h-4 w-4 text-[#1a73e8] shrink-0" />}
               </button>
             );
           })}
@@ -204,7 +204,7 @@ export function Sidebar({
 
   /* ── Contenu de la sidebar ── */
   const sidebarContent = (
-    <div className="p-3 space-y-6">
+    <div className="px-3 py-4 space-y-5">
       {/* Accueil */}
       <button
         id="sidebar-nav-home"
@@ -224,16 +224,16 @@ export function Sidebar({
             <button
               id="sidebar-workspace-switcher"
               onClick={() => setWsSwitcherOpen(true)}
-              className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl border border-[#E7E4D9] hover:border-emerald-400/30 bg-[#F8F7F2] hover:bg-emerald-400/[0.05] text-sm transition-all group mb-1.5"
+              className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-full border border-[#e8eaed] hover:border-[#1a73e8]/30 bg-white hover:bg-[#f8fbff] text-sm transition-all group mb-1.5"
               title="Changer d’espace"
             >
-              <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-emerald-300 bg-emerald-400/10 ring-1 ring-inset ring-emerald-400/20">
+              <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-[#1a73e8] bg-[#e8f0fe]">
                 {getWorkspaceIcon(activeWorkspace.icon)}
               </div>
-              <span className="flex-1 text-left truncate font-semibold text-strong text-sm">
+              <span className="flex-1 text-left truncate font-medium text-[#1f1f1f] text-sm">
                 {activeWorkspace.name}
               </span>
-              <ChevronsUpDown className="h-3.5 w-3.5 text-faint group-hover:text-emerald-300 transition-colors shrink-0" />
+              <ChevronsUpDown className="h-3.5 w-3.5 text-[#9aa0a6] group-hover:text-[#1a73e8] transition-colors shrink-0" />
             </button>
 
             {spaceWording(activeWorkspace).kind === "promo" && (
@@ -254,7 +254,7 @@ export function Sidebar({
                 <Files className={`h-4 w-4 ${navIconClass(currentView === "workspace_files")}`} />
                 <span>Documents</span>
               </div>
-              {counts.workspaceFiles !== undefined && <span className="text-[11px] tabular-nums text-faint">{counts.workspaceFiles}</span>}
+              {counts.workspaceFiles !== undefined && <span className="text-[11px] tabular-nums text-[#9aa0a6]">{counts.workspaceFiles}</span>}
             </button>
 
             <button id="sidebar-nav-workspace-wiki" onClick={() => handleSelect("workspace_wiki")} className={navItemClass(currentView === "workspace_wiki")}>
@@ -262,7 +262,7 @@ export function Sidebar({
                 <BookOpen className={`h-4 w-4 ${navIconClass(currentView === "workspace_wiki")}`} />
                 <span>{spaceWording(activeWorkspace).wiki}</span>
               </div>
-              {counts.workspaceWiki !== undefined && <span className="text-[11px] tabular-nums text-faint">{counts.workspaceWiki}</span>}
+              {counts.workspaceWiki !== undefined && <span className="text-[11px] tabular-nums text-[#9aa0a6]">{counts.workspaceWiki}</span>}
             </button>
 
             {onOpenRevision && spaceWording(activeWorkspace).study && (
@@ -275,7 +275,7 @@ export function Sidebar({
                   <GraduationCap className={`h-4 w-4 ${navIconClass(false)}`} />
                   <span>Réviser</span>
                 </div>
-                <span className="rounded-md bg-emerald-400/10 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-300">Nouveau</span>
+                <span className="rounded-full bg-[#1a73e8]/10 px-2 py-0.5 text-[10px] font-medium text-[#1a73e8]">Nouveau</span>
               </button>
             )}
 
@@ -292,15 +292,15 @@ export function Sidebar({
             )}
           </>
         ) : (
-          <div className="rounded-2xl border border-[#E7E4D9] bg-[#F8F7F2] p-3.5">
-            <div className="text-sm font-medium text-strong">Aucun espace rejoint</div>
-            <p className="mt-1 text-xs leading-relaxed text-subtle">
+          <div className="rounded-2xl border border-[#e8eaed] bg-white p-4">
+            <div className="text-sm font-medium text-[#1f1f1f]">Aucun espace rejoint</div>
+            <p className="mt-1 text-xs leading-relaxed text-[#5f6368]">
               Rejoins l’espace de ta promo avec son code, ou crée-le.
             </p>
             <button
               type="button"
               onClick={() => setCreateWorkspaceOpen(true)}
-              className="mt-3 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-400 px-3 py-2 text-xs font-semibold text-[#FBFAF6] hover:bg-emerald-300 transition-colors"
+              className="mt-3 w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#1a73e8] px-3 py-2 text-xs font-medium text-white hover:bg-[#1967d2] transition-colors"
             >
               <Plus className="h-4 w-4" />
               Rejoindre ou créer
@@ -311,7 +311,7 @@ export function Sidebar({
 
       {/* PERSONNEL : après l’espace de la promo, qui est le cœur de l’app */}
       <div className="space-y-1">
-        <div className="px-3 mb-1.5 eyebrow text-faint">
+        <div className="px-3 mb-1.5 eyebrow text-[#9aa0a6]">
           Personnel
         </div>
 
@@ -320,7 +320,7 @@ export function Sidebar({
             <FolderLock className={`h-4 w-4 ${navIconClass(currentView === "my_docs")}`} />
             <span>Mes documents</span>
           </div>
-          {counts.myDocs !== undefined && <span className="text-[11px] tabular-nums text-faint">{counts.myDocs}</span>}
+          {counts.myDocs !== undefined && <span className="text-[11px] tabular-nums text-[#9aa0a6]">{counts.myDocs}</span>}
         </button>
 
         <button id="sidebar-nav-starred" onClick={() => handleSelect("starred")} className={navItemClass(currentView === "starred")}>
@@ -328,7 +328,7 @@ export function Sidebar({
             <Star className={`h-4 w-4 ${navIconClass(currentView === "starred")}`} />
             <span>Favoris</span>
           </div>
-          {counts.starred !== undefined && <span className="text-[11px] tabular-nums text-faint">{counts.starred}</span>}
+          {counts.starred !== undefined && <span className="text-[11px] tabular-nums text-[#9aa0a6]">{counts.starred}</span>}
         </button>
 
         <button id="sidebar-nav-shared" onClick={() => handleSelect("shared_with_me")} className={navItemClass(currentView === "shared_with_me")}>
@@ -336,7 +336,7 @@ export function Sidebar({
             <Share2 className={`h-4 w-4 ${navIconClass(currentView === "shared_with_me")}`} />
             <span>Partagés avec moi</span>
           </div>
-          {counts.sharedWithMe !== undefined && <span className="text-[11px] tabular-nums text-faint">{counts.sharedWithMe}</span>}
+          {counts.sharedWithMe !== undefined && <span className="text-[11px] tabular-nums text-[#9aa0a6]">{counts.sharedWithMe}</span>}
         </button>
 
         <button id="sidebar-nav-trash" onClick={() => handleSelect("trash")} className={navItemClass(currentView === "trash")}>
@@ -344,18 +344,18 @@ export function Sidebar({
             <Trash2 className={`h-4 w-4 ${navIconClass(currentView === "trash")}`} />
             <span>Corbeille</span>
           </div>
-          {counts.trash !== undefined && <span className="text-[11px] tabular-nums text-faint">{counts.trash}</span>}
+          {counts.trash !== undefined && <span className="text-[11px] tabular-nums text-[#9aa0a6]">{counts.trash}</span>}
         </button>
       </div>
     </div>
   );
 
   const brand = (
-    <div className="flex items-center gap-3 px-4 pb-4 pt-5">
-      <img src="/logo.svg" alt="" className="h-9 w-9 rounded-xl ring-1 ring-emerald-400/15" />
+    <div className="flex items-center gap-3 px-4 pb-3 pt-4">
+      <img src="/logo.svg" alt="" className="h-8 w-8 rounded-lg" />
       <div className="min-w-0">
-        <span className="block font-display text-lg leading-none tracking-tight text-heading">Lekki</span>
-        <span className="mt-1.5 block text-[10px] font-medium uppercase tracking-[0.16em] text-faint">
+        <span className="block font-display text-base leading-none tracking-tight text-[#1f1f1f]">Lekki</span>
+        <span className="mt-1.5 block text-[10px] font-medium uppercase tracking-[0.12em] text-[#9aa0a6]">
           Mémoire de promo
         </span>
       </div>
@@ -370,29 +370,29 @@ export function Sidebar({
       {/* ── Desktop sidebar ── */}
       <aside
         id="lekki-app-sidebar"
-        className="hidden lg:flex w-64 bg-[#F8F7F4] border-r border-[#E7E4D9] flex-col shrink-0 select-none overflow-y-auto"
+        className="hidden lg:flex w-64 bg-white border-r border-[#e8eaed] flex-col shrink-0 select-none overflow-y-auto"
       >
         {brand}
-        <div className="h-px mx-4 mb-1 bg-[#F8F7F2]" />
+        <div className="h-px mx-4 mb-1 bg-[#f1f3f4]" />
         {sidebarContent}
       </aside>
 
       {/* ── Mobile drawer ── */}
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 z-40 flex">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onMobileClose} />
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onMobileClose} />
           <aside
             id="lekki-app-sidebar-mobile"
-            className="relative z-50 h-dvh max-h-dvh w-72 max-w-[85vw] bg-[#F8F7F4] border-r border-[#E7E4D9] flex flex-col overflow-hidden animate-in slide-in-from-left duration-200"
+            className="relative z-50 h-dvh max-h-dvh w-72 max-w-[85vw] bg-white border-r border-[#e8eaed] flex flex-col overflow-hidden animate-in slide-in-from-left duration-200"
           >
-            <div className="flex items-center justify-between px-4 pb-3 pt-4 border-b border-[#E7E4D9]">
+            <div className="flex items-center justify-between px-4 pb-3 pt-4 border-b border-[#e8eaed]">
               <div className="flex items-center gap-2.5">
                 <img src="/logo.svg" alt="" className="h-7 w-7 rounded-lg" />
-                <span className="font-display text-base tracking-tight text-heading">Lekki</span>
+                <span className="font-display text-base tracking-tight text-[#1f1f1f]">Lekki</span>
               </div>
               <button
                 onClick={onMobileClose}
-                className="p-1.5 rounded-lg text-subtle hover:text-strong hover:bg-[#F8F7F2] transition-colors"
+                className="p-1.5 rounded-full text-[#5f6368] hover:text-[#1f1f1f] hover:bg-[#f1f3f4] transition-colors"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -402,22 +402,22 @@ export function Sidebar({
             </div>
 
             {/* Profil utilisateur toujours ancré en bas du menu mobile */}
-            <div className="shrink-0 border-t border-[#E7E4D9] p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+            <div className="shrink-0 border-t border-[#e8eaed] p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
               {mobileProfileOpen && (
                 <>
                   <div
-                    className="absolute inset-0 z-40 bg-black/30 backdrop-blur-sm"
+                    className="absolute inset-0 z-40 bg-black/20 backdrop-blur-sm"
                     onClick={() => setMobileProfileOpen(false)}
                   />
                   <div
-                    className="absolute bottom-0 left-0 right-0 z-50 mb-[calc(0.75rem+env(safe-area-inset-bottom))] mx-2 rounded-xl border border-[#E7E4D9] bg-[#FFFFFF]/95 backdrop-blur-md p-1 shadow-2xl animate-in fade-in slide-in-from-bottom-1 duration-100"
+                    className="absolute bottom-0 left-0 right-0 z-50 mb-[calc(0.75rem+env(safe-area-inset-bottom))] mx-2 rounded-2xl border border-[#e8eaed] bg-white p-1 shadow-2xl animate-in fade-in slide-in-from-bottom-1 duration-100"
                   >
                     <button
                       onClick={() => {
                         logout();
                         onMobileClose?.();
                       }}
-                      className="w-full px-3 py-2.5 text-left flex items-center gap-3 text-sm text-red-700 hover:bg-red-500/10 rounded-lg transition-colors"
+                      className="w-full px-3 py-2.5 text-left flex items-center gap-3 text-sm text-[#d93025] hover:bg-[#d93025]/10 rounded-lg transition-colors"
                     >
                       <LogOut className="h-4 w-4" />
                       Déconnexion
@@ -430,18 +430,18 @@ export function Sidebar({
                 onClick={() => setMobileProfileOpen((open) => !open)}
                 aria-expanded={mobileProfileOpen}
                 aria-label="Ouvrir le menu du profil"
-                className="w-full min-w-0 flex items-center gap-3 rounded-xl px-3 py-2.5 text-left hover:bg-[#F8F7F2] transition-colors"
+                className="w-full min-w-0 flex items-center gap-3 rounded-full px-3 py-2.5 text-left hover:bg-[#f1f3f4] transition-colors"
               >
-                <div className="h-9 w-9 shrink-0 rounded-full bg-gradient-to-br from-emerald-600/60 to-[#8a6a34]/60 border border-emerald-400/25 text-heading flex items-center justify-center font-semibold text-sm">
+                <div className="h-9 w-9 shrink-0 rounded-full bg-gradient-to-br from-[#1a73e8] to-[#1558b0] text-white flex items-center justify-center font-medium text-sm">
                   {user?.name?.charAt(0) || user?.username?.charAt(0) || "U"}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className="truncate text-sm font-semibold text-heading">
+                  <div className="truncate text-sm font-medium text-[#1f1f1f]">
                     {user?.name || user?.username || "Mon compte"}
                   </div>
-                  <div className="truncate text-xs text-subtle">{user?.email || "Profil et paramètres"}</div>
+                  <div className="truncate text-xs text-[#5f6368]">{user?.email || "Profil et paramètres"}</div>
                 </div>
-                <ChevronDown className={`h-4 w-4 shrink-0 text-subtle transition-transform ${mobileProfileOpen ? "rotate-180" : ""}`} />
+                <ChevronDown className={`h-4 w-4 shrink-0 text-[#5f6368] transition-transform ${mobileProfileOpen ? "rotate-180" : ""}`} />
               </button>
             </div>
           </aside>

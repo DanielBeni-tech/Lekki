@@ -4,66 +4,61 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Identité Lekki — claire, façon NotebookLM.
- * Fond crème, surfaces blanches, bordures fines, texte vert encre et accent sauge.
- * On ajuste la palette « zinc » de Tailwind, utilisée partout pour les surfaces et
- * les textes : les composants écrits pour l'ancien thème sombre restent lisibles
- * sans réécrire chaque écran. La palette « emerald » porte l'accent.
+ * Identité Lekki — refonte façon NotebookLM.
+ * Surfaces blanches, fond gris très clair, accent bleu Google, typographie sans-serif.
+ * Layout trois-panneaux : Sources | Conversation | Studio.
  */
 @theme {
-  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Google Sans", "Inter Tight", ui-sans-serif, system-ui, sans-serif;
 
-  /*
-   * Tokens clairs explicites : on ne réinverse plus la palette « zinc » de Tailwind
-   * (un `bg-zinc-900` clair était un piège), chaque rôle a son nom.
-   */
-  --color-heading: #1b211d;
-  --color-strong: #2c332e;
-  --color-body: #3e4641;
-  --color-muted: #58615b;
-  --color-subtle: #6a726c;
-  --color-faint: #767e78;
-  --color-on-primary: #fbfaf6;
-  --color-line: #e6e3da;
-  --color-line-strong: #d8d5ca;
+  /* Tokens neutres façon NotebookLM : blanc + gris froid. */
+  --color-heading: #1f1f1f;
+  --color-strong: #2b2b2b;
+  --color-body: #3c4043;
+  --color-muted: #5f6368;
+  --color-subtle: #80868b;
+  --color-faint: #9aa0a6;
+  --color-on-primary: #ffffff;
+  --color-line: #e8eaed;
+  --color-line-strong: #dadce0;
   --color-surface: #ffffff;
-  --color-canvas: #f8f7f4;
+  --color-canvas: #f8f9fa;
 
-  /* Accent : sauge profond, lisible sur fond clair. */
-  --color-emerald-100: #1f5c42;
-  --color-emerald-200: #246147;
-  --color-emerald-300: #256b4c;
-  --color-emerald-400: #2e7d5b;
-  --color-emerald-500: #246147;
-  --color-emerald-600: #1f5c42;
-  --color-emerald-700: #1a4d37;
-  --color-emerald-800: #163f2d;
-  --color-emerald-900: #123224;
-  --color-emerald-950: #0d2019;
+  /* Accent : bleu Google, lisible sur fond clair. */
+  --color-emerald-100: #1a73e8;
+  --color-emerald-200: #1a73e8;
+  --color-emerald-300: #1a73e8;
+  --color-emerald-400: #1a73e8;
+  --color-emerald-500: #1967d2;
+  --color-emerald-600: #1558b0;
+  --color-emerald-700: #10409e;
+  --color-emerald-800: #0d3a8c;
+  --color-emerald-900: #0b2f7a;
+  --color-emerald-950: #08236a;
 }
 
 @layer base {
   :root {
-    --background: 44 33% 97%;
-    --foreground: 156 12% 12%;
+    --background: 220 20% 98%;
+    --foreground: 0 0% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 156 12% 12%;
+    --card-foreground: 0 0% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 156 12% 12%;
-    --primary: 155 46% 33%;
-    --primary-foreground: 44 33% 97%;
-    --secondary: 45 25% 94%;
-    --secondary-foreground: 156 12% 12%;
-    --muted: 45 25% 94%;
-    --muted-foreground: 150 5% 40%;
-    --accent: 38 55% 44%;
-    --accent-foreground: 44 33% 97%;
+    --popover-foreground: 0 0% 12%;
+    --primary: 217 89% 61%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 0 0% 12%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 217 89% 61%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 45 18% 88%;
-    --input: 45 18% 88%;
-    --ring: 155 46% 33%;
+    --border: 220 14% 91%;
+    --input: 220 14% 91%;
+    --ring: 217 89% 61%;
     --radius: 0.75rem;
   }
 }
@@ -75,8 +70,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #fbfaf6;
-  color: #1b211d;
+  background-color: #f8f9fa;
+  color: #1f1f1f;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -84,14 +79,14 @@ body {
 }
 
 ::selection {
-  background: rgb(46 125 91 / 18%);
-  color: #16241d;
+  background: rgb(26 115 232 / 18%);
+  color: #1f1f1f;
 }
 
-/* Barres de défilement discrètes : le gris foncé du système jurait sur le fond crème. */
+/* Barres de défilement discrètes façon Google. */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #d8d5ca transparent;
+  scrollbar-color: #dadce0 transparent;
 }
 
 ::-webkit-scrollbar {
@@ -102,11 +97,11 @@ body {
 ::-webkit-scrollbar-thumb {
   border: 2px solid transparent;
   border-radius: 9999px;
-  background: #d8d5ca content-box;
+  background: #dadce0 content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c6c2b4 content-box;
+  background: #bdc1c6 content-box;
 }
 
 ::-webkit-scrollbar-track,
@@ -115,35 +110,35 @@ body {
 }
 
 /*
- * Fond des grands blocs d'accueil : dégradé sauge très clair traversé d'un halo laiton,
- * comme les cartes de synthèse de NotebookLM.
+ * Fond des grands blocs d'accueil : dégradé bleu très clair,
+ * comme les surfaces de NotebookLM.
  */
 @utility bg-ink {
   background-image:
-    radial-gradient(120% 90% at 90% -20%, rgb(214 164 87 / 0.08), transparent 58%),
-    linear-gradient(142deg, #f5f8f1 0%, #fbf9f2 54%, #ffffff 100%);
+    radial-gradient(120% 90% at 90% -20%, rgb(26 115 232 / 0.06), transparent 58%),
+    linear-gradient(142deg, #f8fbff 0%, #f8f9fa 54%, #ffffff 100%);
 }
 
 @utility glow-brass {
-  background-image: radial-gradient(60% 70% at 80% 0%, rgb(214 164 87 / 0.18), transparent 70%);
+  background-image: radial-gradient(60% 70% at 80% 0%, rgb(26 115 232 / 0.12), transparent 70%);
 }
 
-/* Titres éditoriaux : Fraunces, un peu resserré, sans graisse excessive. */
+/* Titres éditoriaux : Google Sans, resserré, sans graisse excessive. */
 @utility display-title {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.015em;
 }
 
 @utility eyebrow {
   font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .wiki-markdown {
-  color: #3a423d;
+  color: #3c4043;
   overflow-wrap: anywhere;
 }
 
@@ -159,8 +154,8 @@ body {
 .wiki-markdown h2,
 .wiki-markdown h3,
 .wiki-markdown h4 {
-  color: #1b211d;
-  font-weight: 700;
+  color: #1f1f1f;
+  font-weight: 600;
   line-height: 1.3;
   scroll-margin-top: 6rem;
 }
@@ -169,7 +164,7 @@ body {
   margin: 2rem 0 1rem;
   font-family: var(--font-display);
   font-size: 1.85rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.025em;
 }
 
@@ -177,7 +172,7 @@ body {
   margin: 1.8rem 0 0.75rem;
   font-family: var(--font-display);
   font-size: 1.4rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.015em;
 }
 
@@ -197,23 +192,23 @@ body {
 }
 
 .wiki-markdown strong {
-  color: #16241d;
+  color: #1f1f1f;
   font-weight: 650;
 }
 
 .wiki-markdown em {
-  color: #3c453f;
+  color: #3c4043;
 }
 
 .wiki-markdown a {
-  color: #2e7d5b;
+  color: #1a73e8;
   text-decoration: underline;
-  text-decoration-color: rgb(46 125 91 / 30%);
+  text-decoration-color: rgb(26 115 232 / 30%);
   text-underline-offset: 3px;
 }
 
 .wiki-markdown a:hover {
-  color: #246147;
+  color: #1967d2;
   text-decoration-color: currentColor;
 }
 
@@ -241,16 +236,16 @@ body {
 }
 
 .wiki-markdown li::marker {
-  color: #2e7d5b;
+  color: #1a73e8;
 }
 
 .wiki-markdown blockquote {
   margin: 1.25rem 0;
-  border-left: 3px solid rgb(214 164 87 / 65%);
+  border-left: 3px solid rgb(26 115 232 / 50%);
   border-radius: 0 0.5rem 0.5rem 0;
-  background: rgb(251 241 221 / 70%);
+  background: rgb(232 240 255 / 50%);
   padding: 0.35rem 1rem;
-  color: #5b635c;
+  color: #3c4043;
 }
 
 .wiki-markdown blockquote > :first-child {
@@ -262,11 +257,11 @@ body {
 }
 
 .wiki-markdown code {
-  border: 1px solid #e6e3da;
+  border: 1px solid #e8eaed;
   border-radius: 0.35rem;
-  background: #f6f5ef;
+  background: #f1f3f4;
   padding: 0.12rem 0.35rem;
-  color: #246147;
+  color: #1a73e8;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.88em;
 }
@@ -280,11 +275,11 @@ body {
   background: transparent !important;
   box-shadow: none !important;
   padding: 0.25rem 0;
-  color: #3a423d;
+  color: #3c4043;
   font-size: 0.84rem;
   line-height: 1.75;
   tab-size: 2;
-  scrollbar-color: rgb(155 162 156 / 45%) transparent;
+  scrollbar-color: rgb(154 160 166 / 45%) transparent;
   scrollbar-width: thin;
   white-space: pre;
 }
@@ -309,14 +304,14 @@ body {
 .wiki-markdown hr {
   margin: 1.75rem 0;
   border: 0;
-  border-top: 1px solid #e6e3da;
+  border-top: 1px solid #e8eaed;
 }
 
 /* Tableau : le cadre arrondi est porté par l'enveloppe, qui défile seule sur téléphone. */
 .wiki-markdown div[data-streamdown="table-wrapper"] {
   margin: 1.25rem 0;
   overflow-x: auto;
-  border: 1px solid #e6e3da;
+  border: 1px solid #e8eaed;
   border-radius: 0.75rem;
   -webkit-overflow-scrolling: touch;
 }
@@ -343,21 +338,21 @@ body {
 .wiki-markdown thead,
 .wiki-markdown tbody,
 .wiki-markdown tr {
-  border-color: #e6e3da !important;
+  border-color: #e8eaed !important;
 }
 
 .wiki-markdown th,
 .wiki-markdown td {
   min-width: 6rem;
-  border: 1px solid #e6e3da;
+  border: 1px solid #e8eaed;
   padding: 0.6rem 0.75rem;
   text-align: left;
   vertical-align: top;
 }
 
 .wiki-markdown th {
-  background: #f6f5ef;
-  color: #1b211d;
+  background: #f1f3f4;
+  color: #1f1f1f;
   font-weight: 600;
 }
 
