@@ -39,6 +39,13 @@ const TOKEN_KEY = "lekki_token";
 /** URL d'un fichier protégé, utilisable dans <img src> ou un lien de téléchargement
  *  (ces requêtes ne peuvent pas envoyer l'en-tête Authorization). */
 export function fileUrl(path: string): string {
+  if (DEMO_ENABLED) {
+    if (path.endsWith("/thumbnail")) {
+      return "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='220' viewBox='0 0 320 220'%3E%3Crect width='320' height='220' rx='16' fill='%23F1F0E9'/%3E%3Crect x='132' y='65' width='56' height='72' rx='8' fill='white' stroke='%23D9DFD2' stroke-width='2'/%3E%3Cpath d='M147 87h26M147 99h26M147 111h18' stroke='%232E7D5B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E";
+    }
+    return "data:application/octet-stream;base64,";
+  }
+
   const url = apiUrl(path);
   const token = localStorage.getItem(TOKEN_KEY);
   if (!token) return url;
@@ -101,6 +108,7 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
       await new Promise((resolve) => setTimeout(resolve, 140));
       return demo.data as T;
     }
+    throw new ApiError(501, "Cette action n’est pas disponible dans la démonstration.");
   }
 
   const headers = new Headers(options.headers);
