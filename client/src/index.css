@@ -4,38 +4,38 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Identité Lekki — refonte façon NotebookLM.
- * Surfaces blanches, fond gris très clair, accent bleu Google, typographie sans-serif.
+ * Identité Lekki — espace documentaire et assistant IA, dans une palette forêt et ivoire.
+ * Surfaces claires, contrastes doux, accent vert profond et typographie sans-serif.
  * Layout trois-panneaux : Sources | Conversation | Studio.
  */
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Google Sans", "Inter Tight", ui-sans-serif, system-ui, sans-serif;
 
-  /* Tokens neutres façon NotebookLM : blanc + gris froid. */
-  --color-heading: #1f1f1f;
-  --color-strong: #2b2b2b;
-  --color-body: #3c4043;
-  --color-muted: #5f6368;
-  --color-subtle: #80868b;
-  --color-faint: #9aa0a6;
+  /* Palette Lekki : ivoire doux, vert profond et surfaces aérées. */
+  --color-heading: #16241D;
+  --color-strong: #26342B;
+  --color-body: #3E4641;
+  --color-muted: #5C6B62;
+  --color-subtle: #758278;
+  --color-faint: #8A968E;
   --color-on-primary: #ffffff;
-  --color-line: #e8eaed;
-  --color-line-strong: #dadce0;
+  --color-line: #E5E9DC;
+  --color-line-strong: #D9DFD2;
   --color-surface: #ffffff;
-  --color-canvas: #f8f9fa;
+  --color-canvas: #FBFAF6;
 
-  /* Accent : bleu Google, lisible sur fond clair. */
-  --color-emerald-100: #1a73e8;
-  --color-emerald-200: #1a73e8;
-  --color-emerald-300: #1a73e8;
-  --color-emerald-400: #1a73e8;
-  --color-emerald-500: #1967d2;
-  --color-emerald-600: #1558b0;
-  --color-emerald-700: #10409e;
-  --color-emerald-800: #0d3a8c;
-  --color-emerald-900: #0b2f7a;
-  --color-emerald-950: #08236a;
+  /* Vert forêt Lekki : contrasté, reconnaissable et lisible sur fond clair. */
+  --color-emerald-100: #2E7D5B;
+  --color-emerald-200: #2E7D5B;
+  --color-emerald-300: #2E7D5B;
+  --color-emerald-400: #2E7D5B;
+  --color-emerald-500: #246147;
+  --color-emerald-600: #1C553F;
+  --color-emerald-700: #174A38;
+  --color-emerald-800: #143E30;
+  --color-emerald-900: #103427;
+  --color-emerald-950: #0B2B22;
 }
 
 @layer base {
@@ -46,19 +46,19 @@
     --card-foreground: 0 0% 12%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 12%;
-    --primary: 217 89% 61%;
+    --primary: 155 46% 34%;
     --primary-foreground: 0 0% 100%;
     --secondary: 220 14% 96%;
     --secondary-foreground: 0 0% 12%;
     --muted: 220 14% 96%;
     --muted-foreground: 220 9% 46%;
-    --accent: 217 89% 61%;
+    --accent: 140 25% 94%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
     --border: 220 14% 91%;
     --input: 220 14% 91%;
-    --ring: 217 89% 61%;
+    --ring: 155 46% 34%;
     --radius: 0.75rem;
   }
 }
@@ -70,8 +70,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
-  color: #1f1f1f;
+  background-color: #FBFAF6;
+  color: #16241D;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -79,14 +79,14 @@ body {
 }
 
 ::selection {
-  background: rgb(26 115 232 / 18%);
-  color: #1f1f1f;
+  background: rgb(46 125 91 / 18%);
+  color: #16241D;
 }
 
-/* Barres de défilement discrètes façon Google. */
+/* Barres de défilement discrètes, harmonisées avec les surfaces Lekki. */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #dadce0 transparent;
+  scrollbar-color: #D9DFD2 transparent;
 }
 
 ::-webkit-scrollbar {
@@ -97,7 +97,7 @@ body {
 ::-webkit-scrollbar-thumb {
   border: 2px solid transparent;
   border-radius: 9999px;
-  background: #dadce0 content-box;
+  background: #D9DFD2 content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -115,12 +115,12 @@ body {
  */
 @utility bg-ink {
   background-image:
-    radial-gradient(120% 90% at 90% -20%, rgb(26 115 232 / 0.06), transparent 58%),
-    linear-gradient(142deg, #f8fbff 0%, #f8f9fa 54%, #ffffff 100%);
+    radial-gradient(120% 90% at 90% -20%, rgb(46 125 91 / 0.06), transparent 58%),
+    linear-gradient(142deg, #F5F8F3 0%, #FBFAF6 54%, #ffffff 100%);
 }
 
 @utility glow-brass {
-  background-image: radial-gradient(60% 70% at 80% 0%, rgb(26 115 232 / 0.12), transparent 70%);
+  background-image: radial-gradient(60% 70% at 80% 0%, rgb(46 125 91 / 0.12), transparent 70%);
 }
 
 /* Titres éditoriaux : Google Sans, resserré, sans graisse excessive. */
@@ -138,7 +138,7 @@ body {
 }
 
 .wiki-markdown {
-  color: #3c4043;
+  color: #3E4641;
   overflow-wrap: anywhere;
 }
 
@@ -154,7 +154,7 @@ body {
 .wiki-markdown h2,
 .wiki-markdown h3,
 .wiki-markdown h4 {
-  color: #1f1f1f;
+  color: #16241D;
   font-weight: 600;
   line-height: 1.3;
   scroll-margin-top: 6rem;
@@ -192,23 +192,23 @@ body {
 }
 
 .wiki-markdown strong {
-  color: #1f1f1f;
+  color: #16241D;
   font-weight: 650;
 }
 
 .wiki-markdown em {
-  color: #3c4043;
+  color: #3E4641;
 }
 
 .wiki-markdown a {
-  color: #1a73e8;
+  color: #2E7D5B;
   text-decoration: underline;
-  text-decoration-color: rgb(26 115 232 / 30%);
+  text-decoration-color: rgb(46 125 91 / 30%);
   text-underline-offset: 3px;
 }
 
 .wiki-markdown a:hover {
-  color: #1967d2;
+  color: #246147;
   text-decoration-color: currentColor;
 }
 
@@ -236,16 +236,16 @@ body {
 }
 
 .wiki-markdown li::marker {
-  color: #1a73e8;
+  color: #2E7D5B;
 }
 
 .wiki-markdown blockquote {
   margin: 1.25rem 0;
-  border-left: 3px solid rgb(26 115 232 / 50%);
+  border-left: 3px solid rgb(46 125 91 / 50%);
   border-radius: 0 0.5rem 0.5rem 0;
   background: rgb(232 240 255 / 50%);
   padding: 0.35rem 1rem;
-  color: #3c4043;
+  color: #3E4641;
 }
 
 .wiki-markdown blockquote > :first-child {
@@ -257,11 +257,11 @@ body {
 }
 
 .wiki-markdown code {
-  border: 1px solid #e8eaed;
+  border: 1px solid #E5E9DC;
   border-radius: 0.35rem;
-  background: #f1f3f4;
+  background: #F1F0E9;
   padding: 0.12rem 0.35rem;
-  color: #1a73e8;
+  color: #2E7D5B;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.88em;
 }
@@ -275,7 +275,7 @@ body {
   background: transparent !important;
   box-shadow: none !important;
   padding: 0.25rem 0;
-  color: #3c4043;
+  color: #3E4641;
   font-size: 0.84rem;
   line-height: 1.75;
   tab-size: 2;
@@ -304,14 +304,14 @@ body {
 .wiki-markdown hr {
   margin: 1.75rem 0;
   border: 0;
-  border-top: 1px solid #e8eaed;
+  border-top: 1px solid #E5E9DC;
 }
 
 /* Tableau : le cadre arrondi est porté par l'enveloppe, qui défile seule sur téléphone. */
 .wiki-markdown div[data-streamdown="table-wrapper"] {
   margin: 1.25rem 0;
   overflow-x: auto;
-  border: 1px solid #e8eaed;
+  border: 1px solid #E5E9DC;
   border-radius: 0.75rem;
   -webkit-overflow-scrolling: touch;
 }
@@ -338,21 +338,21 @@ body {
 .wiki-markdown thead,
 .wiki-markdown tbody,
 .wiki-markdown tr {
-  border-color: #e8eaed !important;
+  border-color: #E5E9DC !important;
 }
 
 .wiki-markdown th,
 .wiki-markdown td {
   min-width: 6rem;
-  border: 1px solid #e8eaed;
+  border: 1px solid #E5E9DC;
   padding: 0.6rem 0.75rem;
   text-align: left;
   vertical-align: top;
 }
 
 .wiki-markdown th {
-  background: #f1f3f4;
-  color: #1f1f1f;
+  background: #F1F0E9;
+  color: #16241D;
   font-weight: 600;
 }
 
